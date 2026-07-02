@@ -202,7 +202,7 @@
     "hero": {
       "badge": "Dedicated Invoicing and Special Quotes Interface",
       "title": "Dedicated Invoicing and Special Quotes Interface",
-      "description": "Please utilize this module exclusively if you possess a reference number provided by a representative from Medion."
+      "description": "Please utilize this module exclusively if you possess a reference number provided by a representative from Medion MX."
     },
     "authorized": {
       "title": "Direct Arrangement Confirmed",
@@ -371,6 +371,6 @@
       "privacy": "Confidentiality and Data Privacy Declaration",
       "returns": "Reimbursement, Cancellation & Merchandise Return Protocols"
     },
-    "copyright": "2026 © All rights retained by Medion"
+    "copyright": "2026 © All rights retained by Medion MX"
   }
 }

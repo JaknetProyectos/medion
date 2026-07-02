@@ -216,7 +216,7 @@ export default function Footer() {
                   </p>
 
                   <a
-                    href="mailto:hello@medion.com.mx"
+                    href="mailto:hello@medionmx.com"
                     className="
                       font-medium
                       underline
@@ -226,7 +226,7 @@ export default function Footer() {
                       hover:text-[#EC4899]
                     "
                   >
-                    hello@medion.com.mx
+                    hello@medionmx.com
                   </a>
                 </div>
               </div>

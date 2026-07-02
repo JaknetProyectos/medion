@@ -3,15 +3,15 @@ import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://medion.com.mx"),
+  metadataBase: new URL("https://medionmx.com"),
 
   title: {
-    default: "Medion | Insumos Médicos en México",
-    template: "%s | Medion",
+    default: "Medion MX | Insumos Médicos en México",
+    template: "%s | Medion MX",
   },
 
   description:
-    "Medion es una tienda especializada en la venta de insumos médicos, material clínico, equipo médico y productos para profesionales de la salud en México.",
+    "Medion MX es una tienda especializada en la venta de insumos médicos, material clínico, equipo médico y productos para profesionales de la salud en México.",
 
   keywords: [
     "insumos médicos",
@@ -24,51 +24,51 @@ export const metadata: Metadata = {
     "equipo clínico",
     "hospitales",
     "consultorios médicos",
-    "Medion",
-    "medion.com.mx",
+    "Medion MX",
+    "medionmx.com",
     "venta de insumos médicos",
     "insumos médicos México",
   ],
 
   authors: [
     {
-      name: "Medion",
-      url: "https://medion.com.mx",
+      name: "Medion MX",
+      url: "https://medionmx.com",
     },
   ],
 
-  creator: "Medion",
-  publisher: "Medion",
+  creator: "Medion MX",
+  publisher: "Medion MX",
 
   openGraph: {
     type: "website",
     locale: "es_MX",
-    url: "https://medion.com.mx",
-    siteName: "Medion",
-    title: "Medion | Insumos Médicos en México",
+    url: "https://medionmx.com",
+    siteName: "Medion MX",
+    title: "Medion MX | Insumos Médicos en México",
     description:
       "Venta de insumos médicos, material clínico y equipo médico para hospitales, clínicas y profesionales de la salud.",
     images: [
       {
-        url: "https://medion.com.mx/logo.png",
+        url: "https://medionmx.com/logo.png",
         width: 1200,
         height: 630,
-        alt: "Medion",
+        alt: "Medion MX",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Medion | Insumos Médicos",
+    title: "Medion MX | Insumos Médicos",
     description:
       "Venta de insumos médicos, material clínico y equipo médico en México.",
-    images: ["https://medion.com.mx/logo.png"],
+    images: ["https://medionmx.com/logo.png"],
   },
 
 
   alternates: {
-    canonical: "https://medion.com.mx",
+    canonical: "https://medionmx.com",
   },
 
   robots: {

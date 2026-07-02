@@ -49,8 +49,8 @@ export default function ContactoPage() {
       icon: Mail,
       title: t("info.email.title"),
       subtitle: t("info.email.subtitle"),
-      details: ["hello@medion.com.mx"],
-      link: "mailto:hello@medion.com.mx",
+      details: ["hello@medionmx.com"],
+      link: "mailto:hello@medionmx.com",
     },
   ];
 

@@ -202,7 +202,7 @@
     "hero": {
       "badge": "Módulo de Cotizaciones Particulares y Cobros",
       "title": "Módulo de Cotizaciones Particulares y Cobros",
-      "description": "Por favor, acceda a esta sección únicamente si cuenta con una clave de seguimiento provista por el personal de Medion."
+      "description": "Por favor, acceda a esta sección únicamente si cuenta con una clave de seguimiento provista por el personal de Medion MX."
     },
     "authorized": {
       "title": "Convenio Particular Certificado",
@@ -371,6 +371,6 @@
       "privacy": "Aviso de Confidencialidad de Información Personal",
       "returns": "Lineamientos de Devolución, Cancelación y Reembolso"
     },
-    "copyright": "2026 © Todos los derechos reservados por Medion"
+    "copyright": "2026 © Todos los derechos reservados por Medion MX"
   }
 }

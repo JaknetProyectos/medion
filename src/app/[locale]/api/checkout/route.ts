@@ -3,7 +3,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const LOGO_TEXT_URL = "https://medion.com.mx/title.png";
+const LOGO_TEXT_URL = "https://medionmx.com/title.png";
 
 function formatCurrency(value: number) {
   return new Intl.NumberFormat("es-MX", {
@@ -254,7 +254,7 @@ export async function POST(req: Request) {
                 >
                   <img
                     src="${LOGO_TEXT_URL}"
-                    alt="Medion"
+                    alt="Medion MX"
                     style="
                       width: 170px;
                       max-width: 100%;
@@ -272,7 +272,7 @@ export async function POST(req: Request) {
                       color: #8b6f95;
                     "
                   >
-                    Medion &copy; 2026. Todos los derechos reservados.<br>
+                    Medion MX &copy; 2026. Todos los derechos reservados.<br>
                     Ubicación logística Polanco, Miguel Hidalgo, CDMX.
                   </p>
                 </td>
@@ -880,15 +880,15 @@ export async function POST(req: Request) {
 
     await Promise.all([
       resend.emails.send({
-        from: "Medion <hello@centromedicoavanza.com>",
+        from: "Medion MX <hello@medionmx.com>",
         to: [customer.email],
-        subject: `Confirmación de Compra Orden #${orderId} - Medion`,
+        subject: `Confirmación de Compra Orden #${orderId} - Medion MX`,
         html: htmlCliente,
       }),
 
       resend.emails.send({
-        from: "Medion <hello@centromedicoavanza.com>",
-        to: ["hello@centromedicoavanza.com>"],
+        from: "Medion MX <hello@medionmx.com>",
+        to: ["hello@medionmx.com>"],
         replyTo: customer.email,
         subject: `NOTIFICACIÓN DE VENTA: Orden #${orderId}`,
         html: htmlNegocio,

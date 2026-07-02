@@ -4,7 +4,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Logo principal con letras para el pie del correo
-const LOGO_TEXT_URL = "https://medion.com.mx/title.png";
+const LOGO_TEXT_URL = "https://medionmx.com/title.png";
 
 function escapeHtml(value: string) {
   return value
@@ -81,7 +81,7 @@ export async function POST(req: Request) {
                       margin-bottom: 16px;
                     "
                   >
-                    Medion
+                    Medion MX
                   </div>
 
                   <h1
@@ -133,7 +133,7 @@ export async function POST(req: Request) {
                 <td style="padding: 18px 20px; text-align: center;">
                   <img
                     src="${LOGO_TEXT_URL}"
-                    alt="Medion"
+                    alt="Medion MX"
                     style="
                       width: 170px;
                       max-width: 100%;
@@ -151,8 +151,8 @@ export async function POST(req: Request) {
                       color: #8b6f95;
                     "
                   >
-                    Medion &copy; 2026. Todos los derechos reservados.<br>
-                    Si necesitas ayuda, escribe a hello@medion.com.mx
+                    Medion MX &copy; 2026. Todos los derechos reservados.<br>
+                    Si necesitas ayuda, escribe a hello@medionmx.com
                   </p>
                 </td>
               </tr>
@@ -508,16 +508,16 @@ export async function POST(req: Request) {
 
     await Promise.all([
       resend.emails.send({
-        from: "Medion <hello@centromedicoavanza.com>",
-        to: ["hello@centromedicoavanza.com"],
+        from: "Medion MX <hello@medionmx.com>",
+        to: ["hello@medionmx.com"],
         replyTo: email,
         subject: `Nuevo Mensaje Web: ${nombre}`,
         html: htmlNegocio,
       }),
       resend.emails.send({
-        from: "Medion <hello@centromedicoavanza.com>",
+        from: "Medion MX <hello@medionmx.com>",
         to: [email],
-        subject: "Hemos recibido tu mensaje - Medion",
+        subject: "Hemos recibido tu mensaje - Medion MX",
         html: htmlUsuario,
       }),
     ]);
