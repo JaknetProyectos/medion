@@ -215,8 +215,6 @@ export default function CarritoCheckoutPage() {
     try {
       const response = await processKeycopPayment(paymentPayload);
 
-      console.log(response)
-
       if (response.success) {
         setSuccessData(response.data);
 
