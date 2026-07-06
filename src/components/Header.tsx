@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
+import { useLocaleContext } from "@/context/LangContext";
 
 export function Logo({
   className = "",
@@ -48,15 +49,13 @@ export function Logo({
 
 export default function Header() {
   const t = useTranslations("header");
-  const locale = useLocale();
+  const { locale, switchLanguage } = useLocaleContext()
 
   const { itemCount } = useCart();
 
   const nextLang = locale === "es" ? "en" : "es";
 
-  const switchLanguage = (lang: string) => {
-    window.location.pathname = `/${lang}`;
-  };
+
 
   const navItems = [
     {
