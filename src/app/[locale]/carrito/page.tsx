@@ -106,9 +106,8 @@ function Field({
         onChange={onChange}
         placeholder={placeholder}
         maxLength={maxLength}
-        className={`w-full rounded-2xl border border-[#E9D5FF] bg-[#FCFAFF] px-4 py-3 text-sm text-[#4B3A42] outline-none transition-all placeholder:text-[#B7A4AA] focus:border-[#C084FC] focus:ring-4 focus:ring-[#E9D5FF]/60 ${
-          mono ? "font-mono" : ""
-        } ${inputClassName}`}
+        className={`w-full rounded-2xl border border-[#E9D5FF] bg-[#FCFAFF] px-4 py-3 text-sm text-[#4B3A42] outline-none transition-all placeholder:text-[#B7A4AA] focus:border-[#C084FC] focus:ring-4 focus:ring-[#E9D5FF]/60 ${mono ? "font-mono" : ""
+          } ${inputClassName}`}
       />
     </div>
   );
@@ -214,6 +213,7 @@ export default function CarritoCheckoutPage() {
 
     try {
       const response = await processKeycopPayment(paymentPayload);
+      console.log(response)
 
       if (response.success) {
         setSuccessData(response.data);
@@ -237,6 +237,7 @@ export default function CarritoCheckoutPage() {
         clearCart();
         setStep(3);
       } else {
+        console.log(response)
         setErrorMessage(response.error || t("errors.declined"));
       }
     } catch (err) {
@@ -683,17 +684,16 @@ export default function CarritoCheckoutPage() {
                         type="submit"
                         form="keycop-payment-form"
                         disabled={isProcessing}
-                        className={`w-full rounded-2xl py-6 text-sm font-bold  text-white transition ${
-                          isProcessing
+                        className={`w-full rounded-2xl py-6 text-sm font-bold  text-white transition ${isProcessing
                             ? "cursor-wait bg-[#A855F7]"
                             : "bg-[#EC4899] hover:bg-[#DB2777]"
-                        }`}
+                          }`}
                       >
                         {isProcessing
                           ? t("actions.processing")
                           : t("actions.payAmount", {
-                              amount: formatPrice(grandTotal, "MXN", true),
-                            })}
+                            amount: formatPrice(grandTotal, "MXN", true),
+                          })}
                       </Button>
 
                       <button

@@ -87,8 +87,8 @@
       "cardHolderPlaceholder": "Exactly as displayed on the plastic",
       "expiryMonth": "Expiration Month (MM) *",
       "expiryMonthPlaceholder": "05",
-      "expiryYear": "Expiration Year (YYYY) *",
-      "expiryYearPlaceholder": "2029",
+      "expiryYear": "Expiration Year (YY) *",
+      "expiryYearPlaceholder": "29",
       "cvv": "Security Code (CVV) *",
       "cvvPlaceholder": "•••"
     },

@@ -87,8 +87,8 @@
       "cardHolderPlaceholder": "Tal como aparece impreso",
       "expiryMonth": "Mes de Expiración (MM) *",
       "expiryMonthPlaceholder": "05",
-      "expiryYear": "Año de Expiración (AAAA) *",
-      "expiryYearPlaceholder": "2029",
+      "expiryYear": "Año de Expiración (AA) *",
+      "expiryYearPlaceholder": "29",
       "cvv": "Código de Verificación (CVV) *",
       "cvvPlaceholder": "•••"
     },
