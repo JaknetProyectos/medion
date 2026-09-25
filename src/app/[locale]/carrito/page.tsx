@@ -181,9 +181,13 @@ export default function CarritoCheckoutPage() {
 
     const uniqueOrderId = `MC-${Date.now()}`;
 
+    // Construir la URL completa de confirmación incluyendo la referencia de la orden
+    const confirmationRedirectUrl = `${window.location.origin}/confirmacion?reference=${uniqueOrderId}`;
+
     const paymentPayload = {
       amount: Number(grandTotal.toFixed(2)),
       orderId: uniqueOrderId,
+      redirectUrl: confirmationRedirectUrl, // 👈 Se le pasa la URL de tu app
       cardData: {
         number: formData.cardNumber.replace(/\s/g, ""),
         name: formData.cardName.trim(),
@@ -213,31 +217,22 @@ export default function CarritoCheckoutPage() {
 
     try {
       const response = await processKeycopPayment(paymentPayload);
-      console.log(response)
 
+      // 1. Si requiere autenticación 3DS (Redirección bancaria)
+      if (response.needsRedirect && response.redirectUrl) {
+        window.location.href = response.redirectUrl;
+        return;
+      }
+
+      // 2. Si el pago fue aprobado de inmediato sin 3DS
       if (response.success) {
-        setSuccessData(response.data);
-
-        try {
-          await fetch("/api/checkout", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              orderId: uniqueOrderId,
-              amount: paymentPayload.amount,
-              customer: paymentPayload.customer,
-              items,
-              metadata: paymentPayload.metadata,
-            }),
-          });
-        } catch (emailError) {
-          console.error("⚠️ Falló el despacho de correos informativos:", emailError);
-        }
-
+        // Limpiar carrito u otras acciones necesarias
         clearCart();
-        setStep(3);
+
+        // Redirigir a la página de confirmación con los datos en Query Params
+        const successUrl = `/confirmacion?status=${response.status}&reference=${response.reference}&transactionId=${response.data?.transactionId || response.orderId}&amount=${paymentPayload.amount}`;
+        window.location.href = successUrl;
       } else {
-        console.log(response)
         setErrorMessage(response.error || t("errors.declined"));
       }
     } catch (err) {
@@ -685,8 +680,8 @@ export default function CarritoCheckoutPage() {
                         form="keycop-payment-form"
                         disabled={isProcessing}
                         className={`w-full rounded-2xl py-6 text-sm font-bold  text-white transition ${isProcessing
-                            ? "cursor-wait bg-[#A855F7]"
-                            : "bg-[#EC4899] hover:bg-[#DB2777]"
+                          ? "cursor-wait bg-[#A855F7]"
+                          : "bg-[#EC4899] hover:bg-[#DB2777]"
                           }`}
                       >
                         {isProcessing

@@ -5,6 +5,7 @@ import axios from 'axios';
 export interface PaymentData {
   amount: number;
   orderId: string;
+  redirectUrl?: string; // 👈 Nuevo campo opcional
 
   cardData: {
     number: string;
@@ -35,7 +36,7 @@ export interface PaymentData {
   };
 }
 
-const API_URL = "https://pagos.keycop.com.mx/api/v1"
+const API_URL = "https://pagos.keycop.com.mx/api/v1";
 
 async function getAuthToken() {
   const { data } = await axios.post(`${API_URL}/signin`, {
@@ -51,7 +52,7 @@ async function tokenizeCard(token: string, payment: PaymentData) {
 
   const { data } = await axios.post(`${API_URL}/card/tokenizer`, {
     cardData: {
-      cardNumber: card.number.replace(/\s/g, ''), // Limpiar espacios
+      cardNumber: card.number.replace(/\s/g, ''),
       cardholderName: card.name,
       expirationYear: card.year,
       expirationMonth: card.month
@@ -63,20 +64,16 @@ async function tokenizeCard(token: string, payment: PaymentData) {
   return data.cardNumberToken;
 }
 
-
 export async function processKeycopPayment(payment: PaymentData) {
   try {
-    // 1. Autenticación
     const authToken = await getAuthToken();
-
-    // 2. Tokenización (Sin el CVV)
     const cardToken = await tokenizeCard(authToken, payment);
 
-    // 3. Ejecución de la Venta
     const salePayload = {
       amount: Number(payment.amount),
       currency: "484",
       reference: payment.orderId,
+      redirectUrl: payment.redirectUrl, // 👈 Enviamos la URL de retorno a Keycop
 
       customerInformation: {
         firstName: payment.customer.nombre,
@@ -103,20 +100,25 @@ export async function processKeycopPayment(payment: PaymentData) {
       headers: { Authorization: `Bearer ${authToken}` }
     });
 
+    // Validamos si fue aprobado directo o si requiere redirección 3DS
+    const isApproved = data.status === "APPROVED";
+    const needsRedirect = data.status === "pending_authentication" && Boolean(data.redirectUrl);
 
     return {
-      success: data.status == "APPROVED",
-      orderId: data.orderId,
+      success: isApproved,
+      needsRedirect,
+      redirectUrl: data.redirectUrl || null,
+      orderId: data.orderId || data.reference,
       reference: data.reference,
       status: data.status,
       data: data
     };
 
   } catch (error: any) {
-
     console.error("Keycop Payment Error:", error.response?.data || error.message);
     return {
       success: false,
+      needsRedirect: false,
       status: "error",
       error: error.response?.data?.message || "Error procesando el pago"
     };
