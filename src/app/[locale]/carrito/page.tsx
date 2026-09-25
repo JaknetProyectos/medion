@@ -217,6 +217,7 @@ export default function CarritoCheckoutPage() {
 
     try {
       const response = await processKeycopPayment(paymentPayload);
+      console.log(response)
 
       // 1. Si requiere autenticación 3DS (Redirección bancaria)
       if (response.needsRedirect && response.redirectUrl) {
