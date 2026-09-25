@@ -100,9 +100,11 @@ export async function processKeycopPayment(payment: PaymentData) {
       headers: { Authorization: `Bearer ${authToken}` }
     });
 
+    console.log(data)
+
     // Validamos si fue aprobado directo o si requiere redirección 3DS
     const isApproved = data.status === "APPROVED";
-    const needsRedirect = data.status === "pending_authentication" && Boolean(data.redirectUrl);
+    const needsRedirect = (data.status === "PENDING" || data.status == "PENDIENTE") && Boolean(data.redirectUrl);
 
     return {
       success: isApproved,
