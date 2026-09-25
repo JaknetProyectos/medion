@@ -182,7 +182,7 @@ export default function CarritoCheckoutPage() {
     const uniqueOrderId = `MC-${Date.now()}`;
 
     // Construir la URL completa de confirmación incluyendo la referencia de la orden
-    const confirmationRedirectUrl = `${window.location.origin}/confirmacion?reference=${uniqueOrderId}`;
+    const confirmationRedirectUrl = `${window.location.origin}/confirmacion?reference=${uniqueOrderId}&state=APPROVED`;
 
     const paymentPayload = {
       amount: Number(grandTotal.toFixed(2)),

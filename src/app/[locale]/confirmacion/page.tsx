@@ -23,13 +23,13 @@ function ConfirmationContent() {
       <main className="w-full max-w-lg">
         {/* Card Expresiva Morada (Material Design 3 / Expressive) */}
         <div className="bg-purple-900 text-purple-50 rounded-[32px] p-6 sm:p-8 shadow-2xl shadow-purple-900/30 transition-all duration-300 relative overflow-hidden">
-          
+
           {/* Elementos decorativos orgánicos en el fondo */}
           <div className="absolute -top-16 -right-16 w-40 h-40 bg-purple-600/30 rounded-full blur-2xl pointer-events-none" />
           <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-purple-800/50 rounded-full blur-2xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col items-center text-center">
-            
+
             {/* Ícono dinámico según estado */}
             <div className="mb-6 p-4 rounded-2xl bg-purple-800/60 ring-1 ring-purple-400/30 shadow-inner">
               {isApproved ? (
@@ -55,28 +55,27 @@ function ConfirmationContent() {
               {isApproved
                 ? '¡Pago Confirmado!'
                 : isPending
-                ? 'Procesando Autenticación'
-                : 'Pago No Realizado'}
+                  ? 'Procesando Autenticación'
+                  : 'Pago No Realizado'}
             </h1>
             <p className="text-purple-200 text-sm sm:text-base mb-8 max-w-sm">
               {isApproved
                 ? 'Tu transacción se ha completado con éxito. Hemos enviado el recibo a tu correo electrónico.'
                 : isPending
-                ? 'Tu pago está en proceso de verificación por parte del banco emisor.'
-                : 'Hubo un inconveniente al procesar tu pago. Por favor intenta nuevamente.'}
+                  ? 'Tu pago está en proceso de verificación por parte del banco emisor.'
+                  : 'Hubo un inconveniente al procesar tu pago. Por favor intenta nuevamente.'}
             </p>
 
             {/* Card Interna de Detalles (Superficie elevada interna) */}
             <div className="w-full bg-purple-950/60 rounded-2xl p-5 mb-8 text-left ring-1 ring-purple-500/20 backdrop-blur-sm space-y-3">
               <div className="flex justify-between items-center py-1 border-b border-purple-800/50">
                 <span className="text-xs font-semibold uppercase tracking-wider text-purple-300">Estado</span>
-                <span className={`text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider ${
-                  isApproved 
-                    ? 'bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-500/40' 
-                    : isPending 
-                    ? 'bg-amber-500/20 text-amber-300 ring-1 ring-amber-500/40' 
-                    : 'bg-rose-500/20 text-rose-300 ring-1 ring-rose-500/40'
-                }`}>
+                <span className={`text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider ${isApproved
+                    ? 'bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-500/40'
+                    : isPending
+                      ? 'bg-amber-500/20 text-amber-300 ring-1 ring-amber-500/40'
+                      : 'bg-rose-500/20 text-rose-300 ring-1 ring-rose-500/40'
+                  }`}>
                   {status}
                 </span>
               </div>
@@ -84,11 +83,6 @@ function ConfirmationContent() {
               <div className="flex justify-between items-center py-1 border-b border-purple-800/50">
                 <span className="text-xs font-semibold uppercase tracking-wider text-purple-300">Referencia</span>
                 <span className="text-sm font-mono font-medium text-purple-100">{reference}</span>
-              </div>
-
-              <div className="flex justify-between items-center py-1 border-b border-purple-800/50">
-                <span className="text-xs font-semibold uppercase tracking-wider text-purple-300">Transacción ID</span>
-                <span className="text-sm font-mono font-medium text-purple-100">{transactionId}</span>
               </div>
 
               {amount && (
