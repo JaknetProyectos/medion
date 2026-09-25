@@ -191,7 +191,7 @@ export default function CarritoCheckoutPage() {
       cardData: {
         number: formData.cardNumber.replace(/\s/g, ""),
         name: formData.cardName.trim(),
-        month: formData.cardMonth.padStart(2, "0"),
+        month: formData.cardMonth.trim(),
         year: formData.cardYear.trim(),
         cvv: formData.cardCvv.trim(),
       },
@@ -234,7 +234,7 @@ export default function CarritoCheckoutPage() {
         const successUrl = `/confirmacion?status=${response.status}&reference=${response.reference}&transactionId=${response.data?.transactionId || response.orderId}&amount=${paymentPayload.amount}`;
         window.location.href = successUrl;
       } else {
-        setErrorMessage(response.error || t("errors.declined"));
+        setErrorMessage(response.error  || response.data.message || t("errors.declined"));
       }
     } catch (err) {
       console.error(err);
@@ -563,7 +563,7 @@ export default function CarritoCheckoutPage() {
                           value={formData.cardYear}
                           onChange={handleInputChange}
                           required
-                          maxLength={4}
+                          maxLength={2}
                           placeholder={t("form.expiryYearPlaceholder")}
                           mono
                           inputClassName="text-center"

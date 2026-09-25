@@ -104,12 +104,12 @@ export async function processKeycopPayment(payment: PaymentData) {
 
     // Validamos si fue aprobado directo o si requiere redirección 3DS
     const isApproved = data.status === "APPROVED";
-    const needsRedirect = (data.status === "PENDING" || data.status == "PENDIENTE") && Boolean(data.redirectUrl);
+    const needsRedirect = data.redirectTo != "";
 
     return {
       success: isApproved,
       needsRedirect,
-      redirectUrl: data.redirectUrl || null,
+      redirectUrl: data.redirectTo || null,
       orderId: data.orderId || data.reference,
       reference: data.reference,
       status: data.status,
