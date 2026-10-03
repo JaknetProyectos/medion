@@ -592,7 +592,7 @@ export default function CarritoCheckoutPage() {
                           value={formData.cardCvv}
                           onChange={handleInputChange}
                           required
-                          maxLength={4}
+                          maxLength={3}
                           placeholder={t("form.cvvPlaceholder")}
                           mono
                           inputClassName="text-center"
