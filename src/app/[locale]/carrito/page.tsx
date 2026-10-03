@@ -230,11 +230,28 @@ export default function CarritoCheckoutPage() {
         // Limpiar carrito u otras acciones necesarias
         clearCart();
 
+        // ENVIAR EMAIL DE CONFIRMACIÓN
+        try {
+          await fetch(`/${locale ?? "es"}/api/checkout`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              orderId: uniqueOrderId,
+              amount: paymentPayload.amount,
+              customer: paymentPayload.customer,
+              items,
+              metadata: paymentPayload.metadata,
+            }),
+          });
+        } catch (emailError) {
+          console.error("⚠️ Falló el despacho de correos informativos:", emailError);
+        }
+
         // Redirigir a la página de confirmación con los datos en Query Params
         const successUrl = `/confirmacion?status=${response.status}&reference=${response.reference}&transactionId=${response.data?.transactionId || response.orderId}&amount=${paymentPayload.amount}`;
         window.location.href = successUrl;
       } else {
-        setErrorMessage(response.error  || response.data.message || t("errors.declined"));
+        setErrorMessage(response.error || response.data.message || t("errors.declined"));
       }
     } catch (err) {
       console.error(err);
